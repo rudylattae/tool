@@ -1,3 +1,12 @@
+mod_content := '
+@_default:
+  just --justfile {{{{source_file()}} --list"
+  
+[unix]
+@install:
+  # do it
+'
+
 @_default:
   just --justfile {{source_file()}} --list
 
@@ -10,20 +19,39 @@ init name description:
   mod_content_1="@_default:"
   mod_content_2="just --justfile {{{{source_file()}} --list"
   if [ ! -f $mod_file ]; then
-    echo $mod_content_1 > $mod_file
-    echo "  $mod_content_2" >> $mod_file
+    echo "@_default:
+    just --justfile {{{{source_file()}} --list
+
+  [unix]
+  install:
+  
+  [windows]
+  install:
+
+  alias in := install
+
+  [unix]
+  uninstall:
+
+  [windows]
+  uninstall:
+
+  alias un := uninstall    
+  " > $mod_file
   else
     echo "Mod file already exists: $mod_file" 
   fi
   if ! grep -q "^$mod_reference\$" ./justfile; then
-    printf "\n\n# {{description}}\n" >> ./justfile
-    echo $mod_reference >> ./justfile 
+    echo "
+  # {{description}}
+  $mod_reference" >> ./justfile 
   fi
-
 
 # Visual Studio Code
 mod vscode
 
+# Shell prompt
+mod starship
 
 # Notepad ++ text editor
 mod notepadplus
