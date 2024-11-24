@@ -12,7 +12,8 @@
     printf $initial_content > $mod_file
   else
     echo "Mod file already exists: $mod_file" 
-
+  fi
   if ! grep -q "^$mod_reference\$" ./justfile; then
     printf "\n{{description}}" >> ./justfile
     echo $mod_reference >> ./justfile 
+  fi
