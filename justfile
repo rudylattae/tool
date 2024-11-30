@@ -33,7 +33,24 @@ just op="tldr" install_dir="~/bin":
 [windows]
 just op="tldr":
   #!pwsh.exe
-
+  $package = "Casey.Just"
+  switch("{{op}}") {
+    {'tldr' -contains $_} {
+      echo "Operations: install (in), upgrade (up), uninstall (un)"
+    }
+    {'install', 'in' -contains $_} {
+      echo "Installing $package..."
+      winget install $package
+    }
+    {'upgrade', 'up' -contains $_} {
+      echo "Upgrading $package..."
+      winget upgrade $package
+    }
+    {'uninstall', 'un' -contains $_} {
+      echo "Uninstalling $package..."
+      winget uninstall $package
+    }
+  }
 
 # ==================================
 # Useful shell prompt
