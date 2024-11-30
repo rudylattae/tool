@@ -1,57 +1,64 @@
-mod_content := '
-@_default:
-  just --justfile {{{{source_file()}} --list"
-  
-[unix]
-@install:
-  # do it
-'
-
 @_default:
   just --justfile {{source_file()}} --list
 
-# Create modfile for tool and 
-[unix]
-init name description:
+
+# ==================================
+# CLI task runner
+[linux]
+just op="tldr" install_dir="~/bin":
   #!/usr/bin/env sh
-  mod_file="{{name}}.just"
-  mod_reference="mod {{name}}"
-  mod_content_1="@_default:"
-  mod_content_2="just --justfile {{{{source_file()}} --list"
-  if [ ! -f $mod_file ]; then
-    echo "@_default:
-    just --justfile {{{{source_file()}} --list
+  case "{{op}}" in
+    tldr)
+      echo "Operations: install (in), upgrade (up), uninstall (un)"
+      ;;
+    install|in)
+      echo "Installing..."
+      curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to {{install_dir}}
+      ;;
+    unpgrade|up)
+      echo "Upgrading..."
+      rm {{install_dir}}/just
+      curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to {{install_dir}}
+      ;;
+    uninstall|un)
+      echo "Uninstalling..."
+      rm {{install_dir}}/just
+      ;;
+    *)
+      echo "Invalid option"
+      ;;
+  esac
 
-  [unix]
-  install:
-  
-  [windows]
-  install:
+# CLI task runner
+[windows]
+just op="tldr":
+  #!pwsh.exe
 
-  alias in := install
 
-  [unix]
-  uninstall:
+# ==================================
+# Useful shell prompt
+[linux]
+starship op="exists":
 
-  [windows]
-  uninstall:
 
-  alias un := uninstall    
-  " > $mod_file
-  else
-    echo "Mod file already exists: $mod_file" 
-  fi
-  if ! grep -q "^$mod_reference\$" ./justfile; then
-    echo "
-  # {{description}}
-  $mod_reference" >> ./justfile 
-  fi
+# Useful shell prompt
+[macos]
+starship:
+
+# Useful shell prompt
+[windows]
+starship:
+
+
+# ==================================
+# Visual Studio Code
+[linux]
+vscode:
 
 # Visual Studio Code
-mod vscode
+[macos]
+vscode:
 
-# Shell prompt
-mod starship
-
-# Notepad ++ text editor
-mod notepadplus
+# Visual Studio Code
+[windows]
+vscode:
