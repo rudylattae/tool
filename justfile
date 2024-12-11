@@ -1,81 +1,63 @@
+mod_content := '
+@_default:
+  just --justfile {{{{source_file()}} --list"
+  
+[unix]
+@install:
+  # do it
+'
+
 @_default:
   just --justfile {{source_file()}} --list
 
-
-# ==================================
-# CLI task runner
-[linux]
-just op="tldr" install_dir="~/bin":
+# Create modfile for tool and 
+[unix]
+init name description:
   #!/usr/bin/env sh
-  case "{{op}}" in
-    tldr)
-      echo "Operations: install (in), upgrade (up), uninstall (un)"
-      ;;
-    install|in)
-      echo "Installing..."
-      curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to {{install_dir}}
-      ;;
-    unpgrade|up)
-      echo "Upgrading..."
-      rm {{install_dir}}/just
-      curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to {{install_dir}}
-      ;;
-    uninstall|un)
-      echo "Uninstalling..."
-      rm {{install_dir}}/just
-      ;;
-    *)
-      echo "Invalid option"
-      ;;
-  esac
+  mod_file="{{name}}.just"
+  mod_reference="mod {{name}}"
+  mod_content_1="@_default:"
+  mod_content_2="just --justfile {{{{source_file()}} --list"
+  if [ ! -f $mod_file ]; then
+    echo "@_default:
+    just --justfile {{{{source_file()}} --list
 
-# CLI task runner
-[windows]
-just op="tldr":
-  #!pwsh.exe
-  $package = "Casey.Just"
-  switch("{{op}}") {
-    {'tldr' -contains $_} {
-      echo "Operations: install (in), upgrade (up), uninstall (un)"
-    }
-    {'install', 'in' -contains $_} {
-      echo "Installing $package..."
-      winget install $package
-    }
-    {'upgrade', 'up' -contains $_} {
-      echo "Upgrading $package..."
-      winget upgrade $package
-    }
-    {'uninstall', 'un' -contains $_} {
-      echo "Uninstalling $package..."
-      winget uninstall $package
-    }
-  }
+  [unix]
+  install:
+  
+  [windows]
+  install:
 
-# ==================================
-# Useful shell prompt
-[linux]
-starship op="exists":
+  alias in := install
 
+  [unix]
+  uninstall:
 
-# Useful shell prompt
-[macos]
-starship:
+  [windows]
+  uninstall:
 
-# Useful shell prompt
-[windows]
-starship:
-
-
-# ==================================
-# Visual Studio Code
-[linux]
-vscode:
+  alias un := uninstall    
+  " > $mod_file
+  else
+    echo "Mod file already exists: $mod_file" 
+  fi
+  if ! grep -q "^$mod_reference\$" ./justfile; then
+    echo "
+  # {{description}}
+  $mod_reference" >> ./justfile 
+  fi
 
 # Visual Studio Code
-[macos]
-vscode:
+[group("text"), group("ide")]
+mod vscode
 
-# Visual Studio Code
-[windows]
-vscode:
+# Shell prompt
+[group("shell")]
+mod starship
+
+# Notepad ++ text editor
+[group("text")]
+mod notepadplus
+
+# Unified cli for project tasks
+mod just
