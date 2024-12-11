@@ -61,3 +61,6 @@ mod notepadplus
 
 # Unified cli for project tasks
 mod just
+
+# Multi-modle database
+mod surreal
