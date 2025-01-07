@@ -1,6 +1,6 @@
 mod_content := '
 @_default:
-  just --justfile {{{{source_file()}} --list"
+  just --justfile {{{{source_file()}} --list --unsorted"
   
 [unix]
 @install:
@@ -8,19 +8,19 @@ mod_content := '
 '
 
 @_default:
-  just --justfile {{source_file()}} --list
+  just --justfile {{source_file()}} --list --unsorted
 
-# Create modfile for tool and 
+# Scaffold a modfile for tool 
 [unix]
 init name description:
   #!/usr/bin/env sh
   mod_file="{{name}}.just"
   mod_reference="mod {{name}}"
   mod_content_1="@_default:"
-  mod_content_2="just --justfile {{{{source_file()}} --list"
+  mod_content_2="just --justfile {{{{source_file()}} --list --unsorted"
   if [ ! -f $mod_file ]; then
     echo "@_default:
-    just --justfile {{{{source_file()}} --list
+    just --justfile {{{{source_file()}} --list --unsorted
 
   [unix]
   install:
