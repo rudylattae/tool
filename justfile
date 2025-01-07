@@ -63,7 +63,7 @@ mod notepadplus
 mod just
 
 # Multi-modle database
-mod surreal
+mod surrealdb
 
 # Clipboard manager
 mod ditto
