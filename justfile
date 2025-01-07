@@ -23,18 +23,18 @@ init name description:
     just --justfile {{{{source_file()}} --list --unsorted
 
   [unix]
-  install:
+  @install:
   
   [windows]
-  install:
+  @install:
 
   alias in := install
 
   [unix]
-  uninstall:
+  @uninstall:
 
   [windows]
-  uninstall:
+  @uninstall:
 
   alias un := uninstall    
   " > $mod_file
@@ -64,3 +64,6 @@ mod just
 
 # Multi-modle database
 mod surreal
+
+# Clipboard manager
+mod ditto
