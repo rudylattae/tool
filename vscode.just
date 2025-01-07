@@ -2,18 +2,18 @@
   just --justfile {{source_file()}} --list
 
 [unix]
-install:
+@install:
 
 [windows]
-install:
+@install:
 
 alias in := install
 
 [unix]
-uninstall:
+@uninstall:
 
 [windows]
-uninstall:
+@uninstall:
 
 alias un := uninstall    
 
