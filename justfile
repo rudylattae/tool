@@ -67,3 +67,6 @@ mod surreal
 
 # Clipboard manager
 mod ditto
+
+# Python package and project manager
+mod uv
