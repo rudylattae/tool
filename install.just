@@ -18,7 +18,7 @@
 [windows]
 [group("text")]
 @notepadplusplus:
-  winget install notepadplusplus
+  winget install Notepad++.Notepad++
 
 # Customizable shell prompt
 [unix]
