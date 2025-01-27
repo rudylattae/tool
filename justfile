@@ -70,3 +70,5 @@ mod ditto
 
 # Python package and project manager
 mod uv
+
+mod install
