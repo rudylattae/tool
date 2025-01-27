@@ -17,7 +17,7 @@
 # Notepad++ text editor
 [windows]
 [group("text")]
-@ditto:
+@notepadplusplus:
   winget install notepadplusplus
 
 # Customizable shell prompt
