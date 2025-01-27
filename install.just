@@ -44,6 +44,12 @@
 @uv:
   curl -LsSf https://astral.sh/uv/install.sh | sh
 
+# Python package and project manager
+[windows]
+[group("python"), group("package manager")]
+@uv:
+  powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+
 # Code and text editor
 [windows]
 [group("code"), group("text")]
