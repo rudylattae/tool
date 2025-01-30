@@ -29,6 +29,7 @@
 @rustup:
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
+# Rust programming language
 [windows]
 [group("toochain"), group("rust")]
 @rustup:
@@ -53,6 +54,25 @@
 [group("database")]
 @surreal:
   iwr https://windows.surrealdb.com -useb | iex
+
+
+# Cheatsheets for console commands
+[linux]
+[group("shell")]
+@tldr:
+  echo "Not yet implimented"
+
+# Cheatsheets for console commands
+[macos]
+[group("shell")]
+@tldr:
+  brew install tlrc
+
+# Cheatsheets for console commands
+[windows]
+[group("shell")]
+@tldr:
+  winget install tldr-pages.tlrc
 
 
 # Python package and project manager
