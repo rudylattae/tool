@@ -9,6 +9,25 @@
   winget install Ditto.Ditto
 
 
+# Duckdb. Fast, portable analytics database 
+[linux]
+[group("database"), group('data')]
+@duckdb:
+  curl --fail --location --progress-bar --output duckdb_cli-linux-amd64.zip https://github.com/duckdb/duckdb/releases/download/v1.2.0/duckdb_cli-linux-amd64.zip && unzip duckdb_cli-linux-amd64.zip
+
+# Duckdb. Fast, portable analytics database 
+[macos]
+[group("database"), group('data')]
+@duckdb:
+  curl --fail --location --progress-bar --output duckdb_cli-osx-universal.zip https://github.com/duckdb/duckdb/releases/download/v1.2.0/duckdb_cli-osx-universal.zip && unzip duckdb_cli-osx-universal.zip
+
+# Duckdb. Fast, portable analytics database 
+[windows]
+[group("database"), group('data')]
+@duckdb:
+  winget install DuckDB.cli
+
+
 # Unified cli for project tasks
 [unix]
 [group("command runner")]
