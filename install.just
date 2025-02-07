@@ -12,8 +12,8 @@
 # Duckdb. Fast, portable analytics database 
 [linux]
 [group("database"), group('data')]
-@duckdb:
-  curl --fail --location --progress-bar --output duckdb_cli-linux-amd64.zip https://github.com/duckdb/duckdb/releases/download/v1.2.0/duckdb_cli-linux-amd64.zip && unzip duckdb_cli-linux-amd64.zip
+@duckdb: unzip
+  curl --fail --location --progress-bar --output duckdb_cli-linux-amd64.zip https://github.com/duckdb/duckdb/releases/download/v1.2.0/duckdb_cli-linux-amd64.zip && unzip duckdb_cli-linux-amd64.zip && mv duckdb ~/bin && rm duckdb_cli-linux-amd64.zip
 
 # Duckdb. Fast, portable analytics database 
 [macos]
