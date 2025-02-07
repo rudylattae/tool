@@ -94,6 +94,13 @@
   winget install tldr-pages.tlrc
 
 
+# Unzip. Tool to zip (compress) files
+[unix]
+[group("data")]
+@unzip:
+  sudo apt install unzip
+
+
 # Python package and project manager
 [unix]
 [group("python"), group("package manager")]
@@ -112,3 +119,10 @@
 [group("code"), group("text")]
 @vscode:
   winget install Microsoft.VisualStudioCode
+
+
+# Zip. Tool to unzip (decompress) files
+[unix]
+[group("data")]
+@zip:
+  sudo apt install zip
