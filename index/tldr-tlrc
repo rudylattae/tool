@@ -1,0 +1,17 @@
+# Cheatsheets for console commands
+[linux]
+[group("shell")]
+@install-tldr-tlrc:
+  echo "Not yet implimented"
+
+# Cheatsheets for console commands
+[macos]
+[group("shell")]
+@install-tldr-tlrc:
+  brew install tlrc
+
+# Cheatsheets for console commands
+[windows]
+[group("shell")]
+@install-tldr-tlrc:
+  winget install tldr-pages.tlrc
