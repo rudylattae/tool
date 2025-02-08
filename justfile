@@ -17,6 +17,19 @@ list:
   done
 
 
+# Check if a tool exists
+[linux]
+[no-cd]
+check +tools:
+  #!/usr/bin/env bash
+  IFS=','
+  read -ra tools <<< {{tools}}
+  for i in "${tools[@]}"; do
+    if ! just -f {{source_dir()}}/index/$i.just check-$i
+      echo "not found"
+    fi
+  done
+
 # Install tools
 [linux]
 [no-cd]

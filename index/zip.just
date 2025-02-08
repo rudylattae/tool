@@ -5,6 +5,12 @@
 
 [unix]
 [no-cd]
+check-zip:
+  #!/usr/bin/env bash
+  command -v zip &> /dev/null
+
+[unix]
+[no-cd]
 ensure-zip:
   #!/usr/bin/env bash
   if ! command -v zip &> /dev/null; then
