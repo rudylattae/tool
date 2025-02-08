@@ -9,18 +9,23 @@ mod in 'install.just'
 
 # List available tools
 [linux]
+[no-cd]
 list:
   #!/usr/bin/env sh
-  ls index
+  for file in {{source_dir()}}/index/*; do
+    echo "$(basename "$file" .${file##*.})"
+  done
+
 
 # Install tools
 [linux]
+[no-cd]
 i +tools:
   #!/usr/bin/env bash
   IFS=','
   read -ra tools <<< {{tools}}
   for i in "${tools[@]}"; do
-    just -f index/$i install-$i 
+    just -f {{source_dir()}}/index/$i.just install-$i 
   done
 
 # Install tools

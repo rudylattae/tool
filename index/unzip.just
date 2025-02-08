@@ -1,14 +1,14 @@
 # Unzip. Tool to zip (compress) files
 [unix]
-[group("data")]
+[no-cd]
 @install-unzip:
   sudo apt install unzip
 
 [unix]
-[group("data")]
-@ensure-unzip:
-  #!/usr/bin/env sh
-  if ! command -v "unzip" > /dev/null 2>&1; then
+[no-cd]
+ensure-unzip:
+  #!/usr/bin/env bash
+  if ! command -v unzip &> /dev/null; then
     echo "unzip not found, installing"
     just -f {{source_file()}} install-unzip
   fi
