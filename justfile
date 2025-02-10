@@ -22,6 +22,8 @@ list:
 @list:
   Get-ChildItem -Path "{{source_dir()}}/index" -File | ForEach-Object { [System.IO.Path]::GetFileNameWithoutExtension($_.Name) }
 
+alias ls := list
+
 # Check if a tool exists
 [linux]
 [no-cd]
