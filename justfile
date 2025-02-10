@@ -19,8 +19,8 @@ list:
 # List available tools
 [windows]
 [no-cd]
-list:
-  dir {{source_dir()}}/index
+@list:
+  Get-ChildItem -Path "{{source_dir()}}/index" -File | ForEach-Object { [System.IO.Path]::GetFileNameWithoutExtension($_.Name) }
 
 # Check if a tool exists
 [linux]
