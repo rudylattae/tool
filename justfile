@@ -16,6 +16,11 @@ list:
     echo "$(basename "$file" .${file##*.})"
   done
 
+# List available tools
+[windows]
+[no-cd]
+list:
+  dir {{source_dir()}}/index
 
 # Check if a tool exists
 [linux]
