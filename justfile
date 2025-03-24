@@ -50,5 +50,10 @@ i +tools:
 
 # Install tools
 [windows]
-@i +tools:
-  echo "Installing {{tools}}"
+i +tools:
+  #!pwsh.exe
+  $tools="{{tools}}"
+  $tools.split(' ') | ForEach-Object {
+    Write-Host "`nInstalling $_..."
+    just -f {{source_dir()}}/index/$_.just install-$_
+  }

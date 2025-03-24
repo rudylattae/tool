@@ -19,5 +19,6 @@ install-duckdb: ensure-unzip
 
 [windows]
 [no-cd]
-@install-duckdb:
+install-duckdb:
+  #!pwsh.exe
   winget install DuckDB.cli
